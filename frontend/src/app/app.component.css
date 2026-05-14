@@ -1,0 +1,18 @@
+/* App component specific styles */
+/* (Keep this file minimal to avoid conflicts) */
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #b3b3b3;
+  text-align: left;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.sidebar button:hover {
+  color: white;
+}

@@ -1,0 +1,17 @@
+<div class="app-container">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>🎵 MyMusic</h2>
+
+    <button routerLink="/home">Home</button>
+    <button routerLink="/library">Library</button>
+    <button (click)="logout()">Logout</button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

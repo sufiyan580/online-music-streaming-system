@@ -1,0 +1,72 @@
+/* Search box (only for Search page) */
+.search {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+}
+/* ===== APP LAYOUT ===== */
+.app-container {
+  display: flex;
+  height: 100vh;
+  background: #121212;
+}
+
+/* ===== SIDEBAR (SPOTIFY STYLE) ===== */
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, #000000, #121212);
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Logo */
+.sidebar h2 {
+  color: #1db954;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+/* Buttons container */
+.sidebar button {
+  background: none;
+  border: none;
+  color: #b3b3b3;
+  font-size: 15px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Hover */
+.sidebar button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* Logout button special */
+.sidebar button:last-child {
+  margin-top: auto;
+  color: #ff6b6b;
+}
+
+.sidebar button:last-child:hover {
+  background: rgba(255, 107, 107, 0.15);
+  color: #ff6b6b;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}

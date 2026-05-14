@@ -1,0 +1,105 @@
+<div class="app-container">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>🎵 MyMusic</h2>
+
+    <button (click)="showHome()">🏠 Home</button>
+    <button (click)="showSearch()">🔍 Search</button>
+    <button (click)="showLibrary()">🎵 Library</button>
+    <button (click)="logout()">🚪 Logout</button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+
+    <!-- ================= HOME & SEARCH VIEW ================= -->
+    <div *ngIf="activeView === 'home' || activeView === 'search'">
+
+      <!-- SEARCH INPUT (ONLY IN SEARCH VIEW) -->
+      <input
+        *ngIf="activeView === 'search'"
+        type="text"
+        placeholder="Search songs..."
+        [(ngModel)]="searchText"
+        class="search"
+      />
+
+      <h3 class="section-title">
+        {{ activeView === 'search' ? 'Search Results' : 'Recently Played' }}
+      </h3>
+
+      <div class="row-scroll">
+        <div class="album-card" *ngFor="let song of songs | filter:searchText">
+          <img [src]="song.cover_url" class="cover" />
+
+          <p class="album-title">{{ song.title }}</p>
+          <p class="album-artist">{{ song.artist }}</p>
+
+          <button class="fav-btn" (click)="addToFavorites(song)">⭐</button>
+
+          <button class="play-btn" (click)="togglePlay(song.audio_url)">
+            {{ isPlaying && currentSong === song.audio_url ? '⏸' : '▶' }}
+          </button>
+        </div>
+      </div>
+
+      <!-- TRENDING (ONLY HOME) -->
+      <div *ngIf="activeView === 'home'">
+        <h3 class="section-title">Trending</h3>
+
+        <div class="row-scroll">
+          <div class="album-card" *ngFor="let song of songs">
+            <img [src]="song.cover_url" class="cover" />
+
+            <p class="album-title">{{ song.title }}</p>
+            <p class="album-artist">{{ song.artist }}</p>
+
+            <button class="fav-btn" (click)="addToFavorites(song)">⭐</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= LIBRARY VIEW ================= -->
+    <div *ngIf="activeView === 'library'">
+
+      <h2>Your Library</h2>
+
+      <div *ngIf="playlists.length === 0" class="empty-text">
+        No playlists yet
+      </div>
+
+      <div *ngFor="let playlist of playlists">
+        <h3 class="section-title">{{ playlist.name }}</h3>
+
+        <div class="row-scroll">
+          <div class="album-card" *ngFor="let song of playlist.songs">
+            <img [src]="song.cover_url" class="cover" />
+
+            <p class="album-title">{{ song.title }}</p>
+            <p class="album-artist">{{ song.artist }}</p>
+
+            <button class="play-btn" (click)="togglePlay(song.audio_url)">
+              {{ isPlaying && currentSong === song.audio_url ? '⏸' : '▶' }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- AUDIO PLAYER -->
+<audio
+  #audioPlayer
+  (timeupdate)="updateTime()"
+  (loadedmetadata)="setDuration()">
+</audio>
+
+<div class="player-time" *ngIf="currentSong">
+  {{ currentTime }} / {{ duration }}
+</div>

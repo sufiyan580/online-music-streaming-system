@@ -1,0 +1,41 @@
+<div class="login-page">
+  <div class="login-card">
+
+    <h1 class="login-logo">🎵 MyMusic</h1>
+    <p class="login-subtitle">Create your account</p>
+
+    <input
+      class="login-input"
+      type="text"
+      placeholder="Username"
+      [(ngModel)]="username"
+    />
+
+    <input
+      class="login-input"
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="email"
+    />
+
+    <input
+      class="login-input"
+      type="password"
+      placeholder="Password"
+      [(ngModel)]="password"
+    />
+
+    <button
+      class="login-btn"
+      type="button"
+      (click)="register()">
+      Sign Up
+    </button>
+
+    <p class="login-subtitle" style="margin-top: 20px;">
+      Already have an account?
+      <span class="switch-link" (click)="goLogin()">Log in</span>
+    </p>
+
+  </div>
+</div>
